@@ -1,6 +1,6 @@
 schema_version = "1.0.0"
 
-id = "smarttags-blender"
+id = "smarttags_blender"
 version = "1.0.0"
 name = "Smarttags-blender"
 tagline = "Customizable scene tagging, powered by settings and scripts"

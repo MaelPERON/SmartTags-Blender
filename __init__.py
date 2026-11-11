@@ -12,17 +12,21 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 bl_info = {
-    "name": "ADDON_NAME",
-    "author": "AUTHOR_NAME",
-    "description": "",
+    "name": "SmartTags-Blender",
+    "author": "MaelPERON",
+    "description": "Customizable scene tagging, powered by settings \
+        and scripts.",
     "blender": (2, 80, 0),
     "version": (0, 0, 1),
-    "location": "",
+    "doc_url": "https://github.com/MaelPERON/SmartTags-Blender",
+    "wiki_url": "https://github.com/MaelPERON/SmartTags-Blender/README.md",
+    "download_url": "https://github.com/MaelPERON/SmartTags-Blender/releases",
+    "tracker_url": "https://github.com/MaelPERON/SmartTags-Blender/issues",
     "warning": "",
     "category": "Generic",
 }
 
-from . import auto_load
+from . import auto_load  # noqa: E402
 
 auto_load.init()
 
