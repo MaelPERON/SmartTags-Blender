@@ -68,7 +68,7 @@ class ST_ApplyTags(bpy.types.Operator):
             # Apply the tags to the object
             if not obj.get(TAG_PROP, None):
                 obj[TAG_PROP] = ""
-                obj.property_overridable_library_set(TAG_PROP, False)
+                obj.property_overridable_library_set(f'["{TAG_PROP}"]', False)
 
             obj[TAG_PROP] = ",".join(all_tags)
 
