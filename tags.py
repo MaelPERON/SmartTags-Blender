@@ -128,3 +128,24 @@ def get_env_tags(filter_func: callable = _env_filter_func) -> list[str]:
 
     return tags
 
+
+def get_scene_tags(scene: bpy.types.Scene) -> list[str]:
+    """ Returns a list of tags for the given scene. """
+    tags = []
+
+    tag_string = getattr(scene, "st_sceneTags", "")
+    tags.extend(read_tags_string(tag_string))
+
+    return tags
+
+
+def register():
+    bpy.types.Scene.st_sceneTags = bpy.props.StringProperty(
+        name="Scene Tags",
+        description="Comma-separated tags for the scene",
+        default=""
+    )
+
+
+def unregister():
+    del bpy.types.Scene.st_sceneTags
