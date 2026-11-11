@@ -68,3 +68,9 @@ def get_parent_tags(object: bpy.types.Object,
 
     return [f"{prefix}{parent}" for parent in parents]
 
+
+def get_object_name_tag(object: bpy.types.Object) -> str:
+    """ Returns the object name tag of the given object. """
+    prefix = "OBJECT="
+    return f"{prefix}{object.name}" if prefix else object.name
+
