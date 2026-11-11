@@ -1,6 +1,19 @@
 import bpy
 
 
+PREFS_ICONS = {
+    "use_materials": "MATERIAL",
+    "use_type": "COPY_ID",
+    "use_subdivision": "MOD_SUBSURF",
+    "use_parents": "LINKED",
+    "use_object_name": "OBJECT_DATA",
+    "use_context_tags": "VIEW3D",
+    "use_env_tags": "MEMORY",
+    "use_object_user_tags": "TAG",
+    "use_scene_tags": "SCENE"
+}
+
+
 class ST_Preferences(bpy.types.AddonPreferences):
     bl_idname = __package__
 
@@ -57,6 +70,10 @@ class ST_Preferences(bpy.types.AddonPreferences):
         description="Include scene tags in the tags (e.g. SCENE=MySceneTag)",
         default=True
     )
+
+    def icon(self, key: str) -> str:
+        """ Returns the icon for a given preference key. """
+        return PREFS_ICONS.get(key, "QUESTION_LARGE")
 
 
 def preferences() -> ST_Preferences:
