@@ -76,6 +76,16 @@ def get_object_name_tag(object: bpy.types.Object) -> str:
     return f"{prefix}{object.name}" if prefix else object.name
 
 
+def get_object_user_tags(object: bpy.types.Object) -> list[str]:
+    """ Returns a list of user-defined tags for the given object. """
+    tags = []
+
+    tag_string = getattr(object, "st_objectTags", "")
+    tags.extend(read_tags_string(tag_string))
+
+    return tags
+
+
 def get_context_tags(context: bpy.types.Context) -> list[str]:
     """ Returns a list of tags for the given context. """
     tags = []
@@ -145,7 +155,13 @@ def register():
         description="Comma-separated tags for the scene",
         default=""
     )
+    bpy.types.Object.st_objectTags = bpy.props.StringProperty(
+        name="Object Tags",
+        description="Comma-separated tags for the object",
+        default=""
+    )
 
 
 def unregister():
     del bpy.types.Scene.st_sceneTags
+    del bpy.types.Object.st_objectTags
