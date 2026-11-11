@@ -71,6 +71,12 @@ class ST_Preferences(bpy.types.AddonPreferences):
         default=True
     )
 
+    tag_property: bpy.props.StringProperty(  # type: ignore
+        name="Tag Property",
+        description="The property to use for storing tags",
+        default="st_tags"
+    )
+
     def icon(self, key: str) -> str:
         """ Returns the icon for a given preference key. """
         return PREFS_ICONS.get(key, "QUESTION_LARGE")
