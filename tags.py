@@ -50,3 +50,21 @@ def get_subdivision_tag(object: bpy.types.Object) -> str:
 
     return f"{prefix}{level_count}"
 
+
+def get_parent_tags(object: bpy.types.Object,
+                    filter_func: callable = None) -> list[str]:
+    """ Returns a list of parent tags for the given object. """
+    prefix = "PARENT="
+
+    parents = []
+    current_parent = object.parent
+
+    while current_parent:
+        parents.append(current_parent.name)
+        current_parent = current_parent.parent
+
+    if filter_func:
+        parents = list(filter(filter_func, parents))
+
+    return [f"{prefix}{parent}" for parent in parents]
+
