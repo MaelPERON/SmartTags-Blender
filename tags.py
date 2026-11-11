@@ -34,3 +34,19 @@ def get_material_tags(
 
     return [f"{prefix}{mat}" for mat in materials]
 
+
+def get_subdivision_tag(object: bpy.types.Object) -> str:
+    """ Returns the subdivision tag of the given object. """
+    prefix = "SUBDIV="
+
+    level_count = 0
+
+    if object.modifiers:
+        for modifier in object.modifiers:
+            if modifier.type == 'SUBSURF':
+                modifier: bpy.types.SubsurfModifier
+                level_count += modifier.levels
+                break
+
+    return f"{prefix}{level_count}"
+
