@@ -149,6 +149,11 @@ def get_scene_tags(scene: bpy.types.Scene) -> list[str]:
     return tags
 
 
+def deduplicate_tags(tags: list[str]) -> list[str]:
+    """ Deduplicates a list of tags. """
+    return list(set((tag for tag in tags if tag.strip())))
+
+
 def register():
     bpy.types.Scene.st_sceneTags = bpy.props.StringProperty(
         name="Scene Tags",
