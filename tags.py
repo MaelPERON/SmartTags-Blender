@@ -1,4 +1,5 @@
 import bpy
+import os
 
 
 def read_tags_string(tag_string: str) -> list:
@@ -95,6 +96,35 @@ def get_context_tags(context: bpy.types.Context) -> list[str]:
 
     if world:
         tags.append(f"WORLD={world.name}")
+
+    return tags
+
+
+def _env_filter_func(key: str) -> bool:
+    """ Default filter function for environment variables. """
+    return False
+
+
+def get_env_tags(filter_func: callable = _env_filter_func) -> list[str]:
+    """ Returns a list of environment tags. """
+    tags = []
+
+    prefix = "ENV="
+
+    # Add environment variables as tags
+    keys = os.environ.copy().keys()
+
+    if filter_func:
+        keys = filter(filter_func, keys)
+
+    for key in keys:
+        value = os.environ.get(key)
+
+        if value is None:
+            continue
+
+        tag = f"{prefix}{key}={value}"
+        tags.append(tag)
 
     return tags
 
