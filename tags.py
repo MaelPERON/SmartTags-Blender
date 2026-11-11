@@ -149,6 +149,20 @@ def get_scene_tags(scene: bpy.types.Scene) -> list[str]:
     return tags
 
 
+def sort_tags(tags: list[str]) -> list[str]:
+    """ Sorts a list of tags with prefix first, then alphabetically. """
+
+    def sort_key(tag: str) -> tuple:
+        """ Sort key function for tags. """
+        if "=" in tag:
+            prefix, name = tag.split("=", 1)
+            return (0, prefix, name)
+        else:
+            return (1, tag)
+
+    return sorted(tags, key=sort_key)
+
+
 def deduplicate_tags(tags: list[str]) -> list[str]:
     """ Deduplicates a list of tags. """
     return list(set((tag for tag in tags if tag.strip())))
