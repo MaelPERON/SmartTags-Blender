@@ -1,0 +1,11 @@
+def read_tags_string(tag_string: str) -> list:
+    """ Read a string of tags and return a list of tags.
+
+    Args:
+        tag_string (str): Comma-separated string of tags.
+
+    Returns:
+        list: A list of tags.
+    """
+
+    return [tag.strip() for tag in tag_string.split(",") if tag.strip()]
