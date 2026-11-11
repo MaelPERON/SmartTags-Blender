@@ -93,7 +93,6 @@ def get_context_tags(context: bpy.types.Context) -> list[str]:
     scene = context.scene
     view_layer = context.view_layer
     workspace = context.workspace
-    world = context.world
 
     if scene:
         tags.append(f"SCENE={scene.name}")
@@ -103,9 +102,6 @@ def get_context_tags(context: bpy.types.Context) -> list[str]:
 
     if workspace:
         tags.append(f"WORKSPACE={workspace.name}")
-
-    if world:
-        tags.append(f"WORLD={world.name}")
 
     return tags
 
