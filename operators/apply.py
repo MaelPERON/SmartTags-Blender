@@ -75,6 +75,8 @@ class ST_ApplyTags(bpy.types.Operator):
                 obj.property_overridable_library_set(
                     f'["{tag_property}"]', False)
 
-            obj[TAG_PROP] = ",".join(all_tags)
+            all_tags = [tag for tag in sort_tags(all_tags)
+                        if tag and tag.strip()]
+            obj[tag_property] = ",".join(all_tags)
 
         return {'FINISHED'}
