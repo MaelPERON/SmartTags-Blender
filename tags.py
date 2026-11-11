@@ -74,3 +74,27 @@ def get_object_name_tag(object: bpy.types.Object) -> str:
     prefix = "OBJECT="
     return f"{prefix}{object.name}" if prefix else object.name
 
+
+def get_context_tags(context: bpy.types.Context) -> list[str]:
+    """ Returns a list of tags for the given context. """
+    tags = []
+
+    scene = context.scene
+    view_layer = context.view_layer
+    workspace = context.workspace
+    world = context.world
+
+    if scene:
+        tags.append(f"SCENE={scene.name}")
+
+    if view_layer:
+        tags.append(f"VIEW_LAYER={view_layer.name}")
+
+    if workspace:
+        tags.append(f"WORKSPACE={workspace.name}")
+
+    if world:
+        tags.append(f"WORLD={world.name}")
+
+    return tags
+
