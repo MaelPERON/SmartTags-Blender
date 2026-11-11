@@ -56,6 +56,9 @@ class ST_ApplyTags(bpy.types.Operator):
             # Treating the tags
             all_tags = []
             for local, value in locals().copy().items():
+                if local == "all_tags":
+                    continue
+
                 if local.endswith("_tags") or local.endswith("_tag"):
                     if not value:
                         continue
